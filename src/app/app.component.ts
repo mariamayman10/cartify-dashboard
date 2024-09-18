@@ -5,6 +5,7 @@ import { SnackbarService } from './services/snackbar.service';
 import { MenubarComponent } from './menubar/menubar.component';
 import { AuthenticationService } from './services/authentication.service';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

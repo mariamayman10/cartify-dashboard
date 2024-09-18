@@ -36,7 +36,7 @@ export class SigninComponent {
     this.authService.signIn(formData.value).subscribe(
       (res) => {
         if (res.token) {
-          localStorage.setItem('token', res.token);
+          localStorage.setItem('adminToken', res.token);
           this.authService.saveCurrentUser();
         }
         this.router.navigate(['/home']);

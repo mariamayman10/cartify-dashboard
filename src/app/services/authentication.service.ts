@@ -24,19 +24,19 @@ export class AuthenticationService {
   ) {
     this.hostName = this._GlobalService.hostName;
     this.routeName = this._GlobalService.authenticationRoute;
-    if (localStorage.getItem('token') !== null) {
+    if (localStorage.getItem('adminToken') !== null) {
       this.saveCurrentUser();
     }
   }
   currentUser = new BehaviorSubject(null);
 
   saveCurrentUser() {
-    const token: any = localStorage.getItem('token');
+    const token: any = localStorage.getItem('adminToken');
     this.currentUser.next(jwtDecode(token));
   }
 
   checkToken() {
-    const token: any = localStorage.getItem('token');
+    const token: any = localStorage.getItem('adminToken');
     const decodedToken = jwtDecode(token);
     if (decodedToken.exp! < Date.now() / 1000) {
       this.logout();
@@ -60,18 +60,18 @@ export class AuthenticationService {
     return this._HttpClient.post(
       `${this.hostName}${this.routeName}/verifyResetCode`,
       formData,
-      { headers: { authorization: `Bearer ${localStorage.getItem('verify')}` } }
+      { headers: { authorization: `Bearer ${localStorage.getItem('verifyAdmin')}` } }
     );
   };
   resetPassword = (formData: ResetPassword): Observable<any> => {
     return this._HttpClient.put(
       `${this.hostName}${this.routeName}/resetPassword`,
       formData,
-      { headers: { authorization: `Bearer ${localStorage.getItem('verify')}` } }
+      { headers: { authorization: `Bearer ${localStorage.getItem('verifyAdmin')}` } }
     );
   };
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('adminToken');
     this.currentUser.next(null);
   }
 }

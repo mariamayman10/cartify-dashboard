@@ -5,15 +5,17 @@ import { SigninComponent } from './authentication/signin/signin.component';
 import { rolesGuard } from './guards/rolesGuard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'signin', title: 'login', component: SigninComponent },
   // home
   {
-    path: 'home',
-    title: 'Home',
+    path: 'dashboard',
+    title: 'Dashboard',
     canActivate: [authenticationGuard],
     loadComponent: () =>
-      import('./home/home.component').then((m) => m.HomeComponent),
+      import('./dashboard/dashboard.component').then(
+        (m) => m.DashboardComponent
+      ),
   },
   //users
   {
@@ -30,7 +32,9 @@ export const routes: Routes = [
         path: 'create',
         title: 'Create User',
         loadComponent: () =>
-          import('./users/add-user/add-user.component').then((m) => m.AddUserComponent),
+          import('./users/add-user/add-user.component').then(
+            (m) => m.AddUserComponent
+          ),
       },
       {
         path: ':id/details',

@@ -28,7 +28,7 @@ export class ProductsService {
     return this._HttpClient.get(
       `${this.hostName}${this.routeName}?limit=${limit}&page=${page}&sort=${sort}&search=${search}`,
       {
-        headers: { authorization: `Bearer ${localStorage.getItem('token')}` },
+        headers: { authorization: `Bearer ${localStorage.getItem('adminToken')}` },
       }
     );
   };
@@ -37,17 +37,17 @@ export class ProductsService {
     return this._HttpClient.get(
       `${this.hostName}${this.routeName}/${productId}`,
       {
-        headers: { authorization: `Bearer ${localStorage.getItem('token')}` },
+        headers: { authorization: `Bearer ${localStorage.getItem('adminToken')}` },
       }
     );
   };
 
-  createProduct = (formData: any): Observable<any> => {
+  createProduct = (formData: FormData): Observable<any> => {
     return this._HttpClient.post(
       `${this.hostName}${this.routeName}`,
       formData,
       {
-        headers: { authorization: `Bearer ${localStorage.getItem('token')}` },
+        headers: { authorization: `Bearer ${localStorage.getItem('adminToken')}` },
       }
     );
   };
@@ -57,7 +57,7 @@ export class ProductsService {
       `${this.hostName}${this.routeName}/${productId}`,
       formData,
       {
-        headers: { authorization: `Bearer ${localStorage.getItem('token')}` },
+        headers: { authorization: `Bearer ${localStorage.getItem('adminToken')}` },
       }
     );
   };
@@ -66,7 +66,7 @@ export class ProductsService {
     return this._HttpClient.delete(
       `${this.hostName}${this.routeName}/${productId}`,
       {
-        headers: { authorization: `Bearer ${localStorage.getItem('token')}` },
+        headers: { authorization: `Bearer ${localStorage.getItem('adminToken')}` },
       }
     );
   };

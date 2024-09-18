@@ -54,7 +54,7 @@ export class ForgetPasswordComponent {
   sendMail = (formData: FormGroup) => {
     this._AuthenticationService.sendMail(formData.value).subscribe({
       next: (res) => {
-        localStorage.setItem('verify', res.resetToken);
+        localStorage.setItem('verifyAdmin', res.resetToken);
         this.sendMailFlag = true;
       },
       error: (err) => {
@@ -82,7 +82,7 @@ export class ForgetPasswordComponent {
   resetPassword = (formData: FormGroup) => {
     this._AuthenticationService.resetPassword(formData.value).subscribe({
       next: (res) => {
-        localStorage.removeItem('verify');
+        localStorage.removeItem('verifyAdmin');
         this.sendMailFlag = false;
         this.verifyCodeFlag = false;
         this._Router.navigate(['/signin']);

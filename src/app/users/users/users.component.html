@@ -1,4 +1,4 @@
-<div class="users pt-3 px-lg-5 px-md-4 px-sm-3 px-3 mb-5 mt-3">
+<div class="users pt-3 pe-lg-5 pe-md-4 pe-sm-3 pe-3 mb-5 mt-3">
   <div class="title d-flex pt-5 mb-4">
     <div class="box"></div>
     &nbsp;&nbsp;
@@ -12,11 +12,17 @@
       (input)="searchData(searchInput.value)"
       #searchInput
     />
-    <select class="form-control filter-select" (change)="filterUsers(role.value)" #role>
-      <option value="admin" selected>Admins</option>
-      <option value="user">Users</option>
-    </select>
-    <button class="create-btn px-3" routerLink="create">Create</button>
+    <div class="d-flex flex-wrap">
+      <select
+        class="form-control filter-select me-3"
+        (change)="filterUsers(role.value)"
+        #role
+      >
+        <option value="admin" selected>Admins</option>
+        <option value="user">Users</option>
+      </select>
+      <button class="create-btn px-3" routerLink="create">Create</button>
+    </div>
   </div>
   <div class="table-container mb-5">
     <div class="table-wrapper">
@@ -52,7 +58,9 @@
               <p>No</p>
               }
             </td>
-            <td class="user-details"><a [routerLink]="['/users', user._id, 'details']">User Details</a></td>
+            <td class="user-details">
+              <a [routerLink]="['/users', user._id, 'details']">User Details</a>
+            </td>
           </tr>
           }
         </tbody>

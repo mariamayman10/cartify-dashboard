@@ -1,6 +1,8 @@
 .add-product {
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
+  padding-left: 75px;
+
   .label-helper {
     font-size: 13px;
     font-weight: 500;
@@ -29,7 +31,7 @@
   .input-cont {
     position: relative;
     margin: auto;
-    .desc{
+    .desc {
       padding-top: 11px;
     }
     .placeholder:hover {

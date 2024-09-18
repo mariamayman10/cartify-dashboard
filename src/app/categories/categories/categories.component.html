@@ -1,10 +1,16 @@
-<div class="categories pt-5 px-lg-5 px-md-4 px-3">
+<div class="categories pt-5 pe-lg-5 pe-md-4 pe-3">
   <div class="title d-flex mb-4">
     <div class="box me-3"></div>
     <p class="categories-title">All Categories</p>
   </div>
   <div class="d-flex justify-content-between search-btn">
-    <input type="text" placeholder="Search" class="search mb-5" (input)="searchCategories(searchInput.value)" #searchInput />
+    <input
+      type="text"
+      placeholder="Search"
+      class="search mb-5"
+      (input)="searchCategories(searchInput.value)"
+      #searchInput
+    />
     <button class="create-btn px-3" routerLink="create">Create</button>
   </div>
   <div
@@ -16,7 +22,7 @@
         <p>{{ category.name | uppercase }}</p>
 
         <div class="icons">
-          <a [routerLink]="['/categories',category._id,'update']">
+          <a [routerLink]="['/categories', category._id, 'update']">
             <i class="fas fa-pen me-3"></i>
           </a>
           <a (click)="deleteCategory(category._id)">

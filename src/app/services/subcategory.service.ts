@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GlobalService } from './global.service';
 import { Observable } from 'rxjs';
+import { Subcategory } from '../interfaces/subcategory';
 
 @Injectable({
   providedIn: 'root',
@@ -43,28 +44,28 @@ export class SubcategoryService {
     );
   }
 
-  createSubcategory(formData: any): Observable<any> {
+  createSubcategory(formData: Subcategory): Observable<any> {
     return this._HttpClient.post(
       `${this.hostName}${this.routeName}`,
       formData,
       {
-        headers: { authorization: `Bearer ${localStorage.getItem('token')}` },
+        headers: { authorization: `Bearer ${localStorage.getItem('adminToken')}` },
       }
     );
   }
 
-  updateSubcategory(subcategoryId: string, formData: any): Observable<any> {
+  updateSubcategory(subcategoryId: string, formData: Subcategory): Observable<any> {
     return this._HttpClient.put(
       `${this.hostName}${this.routeName}/${subcategoryId}`,
       formData,
-      { headers: { authorization: `Bearer ${localStorage.getItem('token')}` } }
+      { headers: { authorization: `Bearer ${localStorage.getItem('adminToken')}` } }
     );
   }
 
   deleteSubcategory(subcategoryId: string): Observable<any> {
     return this._HttpClient.delete(
       `${this.hostName}${this.routeName}/${subcategoryId}`,
-      { headers: { authorization: `Bearer ${localStorage.getItem('token')}` } }
+      { headers: { authorization: `Bearer ${localStorage.getItem('adminToken')}` } }
     );
   }
 

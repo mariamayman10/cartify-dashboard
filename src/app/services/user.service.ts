@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GlobalService } from './global.service';
 import { Observable } from 'rxjs';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root',
@@ -27,46 +28,46 @@ export class UserService {
   ): Observable<any> {
     return this._HttpClient.get(
       `${this.hostName}${this.routeName}?limit=${limit}&page=${page}&sort=${sort}&search=${search}&role=${role}&fields=-password`,
-      { headers: { authorization: `Bearer ${localStorage.getItem('token')}` } }
+      { headers: { authorization: `Bearer ${localStorage.getItem('adminToken')}` } }
     );
   }
 
   getUser = (userId: string): Observable<any> => {
     return this._HttpClient.get(`${this.hostName}${this.routeName}/${userId}`, {
-      headers: { authorization: `Bearer ${localStorage.getItem('token')}` },
+      headers: { authorization: `Bearer ${localStorage.getItem('adminToken')}` },
     });
   };
 
-  createUser(formData: any): Observable<any> {
+  createUser(formData: User): Observable<any> {
     return this._HttpClient.post(
       `${this.hostName}${this.routeName}`,
       formData,
       {
-        headers: { authorization: `Bearer ${localStorage.getItem('token')}` },
+        headers: { authorization: `Bearer ${localStorage.getItem('adminToken')}` },
       }
     );
   }
 
-  updateUser(userId: string, formData: any): Observable<any> {
+  updateUser(userId: string, formData: FormData): Observable<any> {
     return this._HttpClient.put(
       `${this.hostName}${this.routeName}/${userId}`,
       formData,
-      { headers: { authorization: `Bearer ${localStorage.getItem('token')}` } }
+      { headers: { authorization: `Bearer ${localStorage.getItem('adminToken')}` } }
     );
   }
 
-  updateUserPassword(userId: string, formData: any): Observable<any> {
+  updateUserPassword(userId: string, formData: FormData): Observable<any> {
     return this._HttpClient.put(
       `${this.hostName}${this.routeName}/${userId}/changePassword`,
       formData,
-      { headers: { authorization: `Bearer ${localStorage.getItem('token')}` } }
+      { headers: { authorization: `Bearer ${localStorage.getItem('adminToken')}` } }
     );
   }
 
   deleteUser(userId: string): Observable<any> {
     return this._HttpClient.delete(
       `${this.hostName}${this.routeName}/${userId}`,
-      { headers: { authorization: `Bearer ${localStorage.getItem('token')}` } }
+      { headers: { authorization: `Bearer ${localStorage.getItem('adminToken')}` } }
     );
   }
 }
